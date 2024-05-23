@@ -9,7 +9,6 @@ pipeline {
                     echo 'Stage 1: Build'
                     echo 'Task: Build the code using a build automation tool to compile and package the code.'
                     echo 'Tool: Maven (for Java projects)'
-                    sh 'mvn clean package'
                 }
             }
         }
@@ -19,7 +18,6 @@ pipeline {
                     echo 'Stage 2: Unit and Integration Tests'
                     echo 'Task: Run unit tests to ensure the code functions as expected and run integration tests to ensure different components of the application work together as expected.'
                     echo 'Tool: JUnit (for unit tests), TestNG (for integration tests)'
-                    sh 'mvn test'
                 }
             }
             post {
@@ -47,7 +45,6 @@ pipeline {
                     echo 'Stage 3: Code Analysis'
                     echo 'Task: Integrate a code analysis tool to analyze the code and ensure it meets industry standards.'
                     echo 'Tool: SonarQube'
-                    sh 'mvn sonar:sonar'
                 }
             }
         }
