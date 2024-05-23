@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
+                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '6d88bd66-93d8-4842-a73e-75bc2a6a0e4d', url: 'https://github.com/Isuruperera18/SIT223_SIT753-6.1C.git']])
                     echo 'Stage 1: Build'
                     echo 'Task: Build the code using a build automation tool to compile and package the code.'
                     echo 'Tool: Maven (for Java projects)'
@@ -24,7 +25,7 @@ pipeline {
             post {
                 success {
                     emailext(
-                        to: 'nirasha999@gmail.com',
+                        to: 'mytestaccforyou@gmail.com',
                         subject: "Unit and Integration Tests Successful - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                         body: "The unit and integration tests stage was successful.",
                         attachLog: true
@@ -32,7 +33,7 @@ pipeline {
                 }
                 failure {
                     emailext(
-                        to: 'nirasha999@gmail.com',
+                        to: 'mytestaccforyou@gmail.com',
                         subject: "Unit and Integration Tests Failed - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                         body: "The unit and integration tests stage failed. Please check the logs.",
                         attachLog: true
@@ -61,7 +62,7 @@ pipeline {
             post {
                 success {
                     emailext(
-                        to: 'nirasha999@gmail.com',
+                        to: 'mytestaccforyou@gmail.com,
                         subject: "Security Scan Successful - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                         body: "The security scan stage was successful.",
                         attachLog: true
@@ -69,7 +70,7 @@ pipeline {
                 }
                 failure {
                     emailext(
-                        to: 'nirasha999@gmail.com',
+                        to: 'mytestaccforyou@gmail.com',
                         subject: "Security Scan Failed - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                         body: "The security scan stage failed. Please check the logs.",
                         attachLog: true
@@ -109,7 +110,7 @@ pipeline {
     post {
         failure {
             emailext(
-                to: 'nirasha999@gmail.com',
+                to: 'mytestaccforyou@gmail.com',
                 subject: "Jenkins Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) Failed",
                 body: "Something went wrong with ${env.JOB_NAME} #${env.BUILD_NUMBER}. Please check the logs.",
                 attachLog: true
@@ -117,7 +118,7 @@ pipeline {
         }
         success {
             emailext(
-                to: 'nirasha999@gmail.com',
+                to: 'mytestaccforyou@gmail.com',
                 subject: "Jenkins Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) Succeeded",
                 body: "The build and deployment of ${env.JOB_NAME} #${env.BUILD_NUMBER} was successful.",
                 attachLog: true
